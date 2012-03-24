@@ -25,6 +25,7 @@ This application does not use a custom widgetset, if you are asked to recompile,
 
 * Choose Run on server for the project
 * You can use any Servlet container. For example "J2EE Preview" works just fine.
+* Please add ?restartApplication in the end of your URL to restart your application on each page reload 
 
 
 ### Speeding up development cycle
