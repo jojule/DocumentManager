@@ -9,6 +9,7 @@ import com.vaadin.data.util.FilesystemContainer;
 import com.vaadin.data.util.TextFileProperty;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Table;
 import com.vaadin.ui.Window;
 
 public class DocumentmanagerApplication extends Application {
@@ -16,7 +17,7 @@ public class DocumentmanagerApplication extends Application {
 	static final String javaDocFolderPath = "/Users/phoenix/Desktop/docs";
 	private FilesystemContainer docs = new FilesystemContainer(new File(
 			javaDocFolderPath));
-	private ComboBox sel = new ComboBox("Choose a file", docs);
+	private Table sel = new Table(null, docs);
 	private Label doc = new Label("", Label.CONTENT_XHTML);
 
 	@Override
@@ -27,6 +28,7 @@ public class DocumentmanagerApplication extends Application {
 		mainWindow.addComponent(doc);
 		
 		sel.setImmediate(true);
+		sel.setSelectable(true);
 		sel.addListener(new ValueChangeListener() {
 			@Override
 			public void valueChange(ValueChangeEvent event) {
