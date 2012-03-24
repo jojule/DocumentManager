@@ -10,6 +10,7 @@ import com.vaadin.data.util.TextFileProperty;
 import com.vaadin.ui.ComboBox;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.VerticalSplitPanel;
 import com.vaadin.ui.Window;
 
 public class DocumentmanagerApplication extends Application {
@@ -22,10 +23,11 @@ public class DocumentmanagerApplication extends Application {
 
 	@Override
 	public void init() {
-		Window mainWindow = new Window("Documentmanager Application");
+		Window mainWindow = new Window("Documentmanager Application", new VerticalSplitPanel());
 		setMainWindow(mainWindow);
 		mainWindow.addComponent(sel);
 		mainWindow.addComponent(doc);
+		sel.setSizeFull();
 		
 		sel.setImmediate(true);
 		sel.setSelectable(true);
