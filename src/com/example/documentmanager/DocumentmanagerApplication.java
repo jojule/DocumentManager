@@ -8,6 +8,7 @@ import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.FilesystemContainer;
 import com.vaadin.data.util.TextFileProperty;
 import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.VerticalSplitPanel;
@@ -23,12 +24,12 @@ public class DocumentmanagerApplication extends Application {
 
 	@Override
 	public void init() {
-		Window mainWindow = new Window("Documentmanager Application", new VerticalSplitPanel());
-		setMainWindow(mainWindow);
-		mainWindow.addComponent(sel);
-		mainWindow.addComponent(doc);
-		sel.setSizeFull();
-		
+		Window mainWindow = new Window("Documentmanager Application", buildLayout());
+		setMainWindow(mainWindow);		
+		wireUp();
+	}
+
+	private void wireUp() {
 		sel.setImmediate(true);
 		sel.setSelectable(true);
 		sel.addListener(new ValueChangeListener() {
@@ -37,6 +38,14 @@ public class DocumentmanagerApplication extends Application {
 				doc.setPropertyDataSource(new TextFileProperty((File) sel.getValue()));
 			}
 		});
+	}
+
+	private ComponentContainer buildLayout() {
+		VerticalSplitPanel split = new VerticalSplitPanel();
+		split.addComponent(sel);
+		split.addComponent(doc);
+		sel.setSizeFull();
+		return split;
 	}
 
 }
