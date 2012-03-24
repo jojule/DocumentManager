@@ -45,7 +45,7 @@ public class DocumentmanagerApplication extends Application {
 		editButton.addListener(new ClickListener() {			
 			@Override
 			public void buttonClick(ClickEvent event) {
-				Window dialog = new Window("Editor");
+				Window dialog = new Window("Editor", new Editor(doc));
 				editButton.getWindow().addWindow(dialog);
 				dialog.setModal(true);
 				dialog.setWidth("90%");
