@@ -7,7 +7,10 @@ import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.FilesystemContainer;
 import com.vaadin.data.util.TextFileProperty;
-import com.vaadin.ui.ComboBox;
+import com.vaadin.ui.AbsoluteLayout;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.ComponentContainer;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
@@ -21,6 +24,7 @@ public class DocumentmanagerApplication extends Application {
 			javaDocFolderPath));
 	private Table sel = new Table(null, docs);
 	private Label doc = new Label("", Label.CONTENT_XHTML);
+	private Button editButton = new Button("Edit");
 
 	@Override
 	public void init() {
@@ -38,14 +42,27 @@ public class DocumentmanagerApplication extends Application {
 				doc.setPropertyDataSource(new TextFileProperty((File) sel.getValue()));
 			}
 		});
+		editButton.addListener(new ClickListener() {			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Window dialog = new Window("Editor");
+				editButton.getWindow().addWindow(dialog);
+				dialog.setModal(true);
+				dialog.setWidth("90%");
+				dialog.setHeight("90%");
+			}
+		});
 	}
 
 	private ComponentContainer buildLayout() {
+		AbsoluteLayout abs = new AbsoluteLayout();
 		VerticalSplitPanel split = new VerticalSplitPanel();
 		split.addComponent(sel);
 		split.addComponent(doc);
 		sel.setSizeFull();
-		return split;
+		abs.addComponent(split);
+		abs.addComponent(editButton, "bottom: 10px; right: 10px;");
+		return abs;
 	}
 
 }
