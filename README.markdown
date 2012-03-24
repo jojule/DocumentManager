@@ -15,6 +15,8 @@ Import this project to Eclipse with "Import project"
 Download the following libraries and copy them to WebContent/WEB-INF/lib directory:
 
 * vaadin-6.7.6.jar
+* scala-library.jar
+* scaladin_2.9.1-1.0.0.jar
 
 (or any newer version available)
 
